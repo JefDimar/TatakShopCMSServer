@@ -36,14 +36,6 @@ Server REST API untuk webpage ecommerce
   }
   ```
 
-  _Response (400 - Bad Request)_
-
-  ```json
-  {
-    "message": "Check again your type of data, before sending to server"
-  }
-  ```
-
   _Response (401 - Unauthorized)_
 
   ```json
