@@ -266,6 +266,64 @@ Server REST API untuk webpage ecommerce
   }
   ```
 
+  ### PATCH /products/:id
+  > Mengubah field price dan stock yang ada di products berdasarkan id product
+
+  _Request body_
+  ```json
+  {
+    "price": "Updated price of products <Must be greater than zero>",
+    "stock": "Updated stock of products <Must be greater than zero>"
+  }
+  ```
+
+  _Request params_
+  ```json
+  {
+    "id": "[INTEGER]"
+  }
+  ```
+
+  _Request headers_
+  ```json
+  {
+    "access_token": "<token generated default by system when login>"
+  }
+  ```
+
+  _Response (201 - Created)_
+  ```json
+  {
+    "message": "Success data has been updated successfully"
+  }
+  ```
+
+  _Response (404 - Not Found)_
+  ```json
+  {
+    "message": "Product you requested not found"
+  }
+  ```
+
+  _Response (400 - Bad Request)_
+  ```json
+  [
+    {
+      "message": "<Type of field you missing or not correct>"
+    },
+    {
+      "message": "<Type of field you missing or not correct>"
+    }
+  ]
+  ```
+
+  _Response (500 - Internal Server Error)_
+  ```json
+  {
+    "message": "Internal Server Error"
+  }
+  ```
+
   ### DELETE /products/:id
   > Menghapus products yang sudah tidak diperlukan / stock habis
 
