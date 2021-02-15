@@ -6,6 +6,11 @@ const errorHandler = (err, req, res, next) => {
           message: 'Invalid email or password, check again'
         })
         break;
+      case 'Unauthorized, access denied':
+        res.status(401).json({
+          message: 'Please login first'
+        })
+        break;
       default:
         res.status(500).json({
           message: 'Internal Server Error'
