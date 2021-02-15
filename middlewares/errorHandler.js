@@ -1,6 +1,6 @@
 const errorHandler = (err, req, res, next) => {
   if(err) {
-    console.log(err.name);
+    console.log(err.message, err.name, '<<<<<< error di errorhandler');
     switch (err.name) {
       case 'Username / Password wrong':
         res.status(401).json({
