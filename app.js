@@ -13,6 +13,6 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.use(router)
-// app.use(errorHandler)
+app.use(errorHandler)
 
 module.exports = app

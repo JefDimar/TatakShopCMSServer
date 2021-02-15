@@ -1,5 +1,11 @@
 const request = require('supertest')
 const app = require('../app')
+const { sequelize } = require('../models')
+
+afterAll(function(done) {
+  sequelize.close()
+  done()
+})
 
 describe('success case for login', function() {
   it('should response Status Code (200 - Ok)', function(done) {
@@ -28,8 +34,8 @@ describe('success case for login', function() {
 describe('error case for login', function() {
   it('password wrong - should response Status code (401 - Unauthorized)', function(done) {
     const body = {
-      ema: 'admin@mail.com',
-      pas: '123456789'
+      email: 'admin@mail.com',
+      password: '123456789'
     }
     request(app)
       .post('/login')
@@ -49,8 +55,8 @@ describe('error case for login', function() {
 
   it('email wrong - should response Status code (401 - Unauthorized)', function(done) {
     const body = {
-      ema: 'adminbeneran@mail.com',
-      pas: '123456'
+      email: 'adminbeneran@mail.com',
+      password: '123456'
     }
     request(app)
       .post('/login')

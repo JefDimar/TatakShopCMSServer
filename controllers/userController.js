@@ -16,8 +16,8 @@ class UserController {
     })
       .then(user => {
         if(!user) {
-          res.status(401).json({
-            message: 'Invalid email or password, check again'
+          next({
+            name: 'Username / Password wrong'
           })
         } else {
           const match = checkPassword(input.password, user.password)
@@ -38,17 +38,14 @@ class UserController {
 
             res.status(200).json(output)
           } else {
-            res.status(401).json({
-              message: 'Invalid email or password, check again'
+            next({
+              name: 'Username / Password wrong'
             })
           }
         }
       })
       .catch(err => {
-        console.log(err);
-        res.status(500).json({
-          message: 'Internal Server Error'
-        })
+        next(err)
       })
   }
 }
