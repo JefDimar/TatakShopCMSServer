@@ -124,7 +124,7 @@ Server REST API untuk webpage ecommerce
     "name": "name of products you want to store",
     "image_url": "photos of your products you want to store",
     "price": "price of your products <must be greater than zero>",
-    "stock": "stock of your products <must be greater than zero"
+    "stock": "stock of your products <must be greater than zero>"
   }
   ```
 
@@ -216,6 +216,7 @@ Server REST API untuk webpage ecommerce
 
   ### PUT /products/:id
   > Mengubah keseluruhan field yang ada di products berdasarkan id product
+
   _Request body_
   ```json
   {
@@ -303,15 +304,15 @@ Server REST API untuk webpage ecommerce
   ```
 
   _Response (404 - Not Found)_
-```json
-{
-  "message" : "Error not found"
-}
-```
+  ```json
+  {
+    "message" : "Error not found"
+  }
+  ```
 
-_Response (500 - Internal Server Error)_
-```json
-{
-  "message" : "Internal Server Error"
-}
-```
+  _Response (500 - Internal Server Error)_
+  ```json
+  {
+    "message" : "Internal Server Error"
+  }
+  ```
