@@ -11,6 +11,16 @@ const errorHandler = (err, req, res, next) => {
           message: 'Please login first'
         })
         break;
+      case 'Error price / stock, min > 0':
+        res.status(400).json({
+          message: 'Price or Stock must be greater than zero'
+        })
+        break;
+      case 'Data not found':
+        res.status(404).json({
+          message: 'Products you requested not found'
+        })
+        break;
       default:
         res.status(500).json({
           message: 'Internal Server Error'
