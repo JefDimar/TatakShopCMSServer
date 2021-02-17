@@ -378,6 +378,35 @@ describe('failed case for product', function () {
   })
 
   describe('case for delete product', function () {
+    it('no access_token - should response status code (401 - Unauthorized)', function (done) {
+      request(app)
+        .delete(`/products/${id}`)
+        .end((err, res) => {
+          if (err) {
+            return done(err);
+          }
+          expect(res.status).toEqual(401)
+          expect(typeof res.body).toEqual('object')
+          expect(res.body).toHaveProperty('message')
+          expect(res.body.message).toEqual('Please provide a JWT token, or login again')
+          done()
+        })
+    })
 
+    it('gave access_token but not admin - should response status code (401 - Unauthorized)', function (done) {
+      request(app)
+        .delete(`/products/${id}`)
+        .set('access_token', tokenCust)
+        .end((err, res) => {
+          if (err) {
+            return done(err);
+          }
+          expect(res.status).toEqual(401)
+          expect(typeof res.body).toEqual('object')
+          expect(res.body).toHaveProperty('message')
+          expect(res.body.message).toEqual('Please login first')
+          done()
+        })
+    })
   })
 })
