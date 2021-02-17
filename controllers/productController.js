@@ -49,7 +49,7 @@ class ProductController {
     }
   }
 
-  static getById(req, res, next) {
+  static getByID(req, res, next) {
     const id = req.params.id;
 
     Product.findOne({ where: { id } })
