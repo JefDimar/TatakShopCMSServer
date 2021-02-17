@@ -27,15 +27,16 @@ class ProductController {
     const input = {
       name: req.body.name,
       image_url: req.body.image_url,
-      price: req.body.price,
-      stock: req.body.stock,
+      price: +req.body.price,
+      stock: +req.body.stock,
     };
-
+    // console.log(input, 'ini di create')
     if (input.price < 0 || input.stock < 0) {
       next({
         name: "Error price / stock, min > 0",
       });
     } else {
+      // console.log(Product, 'ini di else habis cek harga')
       Product.create(input)
         .then((data) => {
           delete data.createdAt;
@@ -44,6 +45,7 @@ class ProductController {
           res.status(201).json(data);
         })
         .catch((err) => {
+          // console.log(err.message, 'error di create')
           next(err);
         });
     }

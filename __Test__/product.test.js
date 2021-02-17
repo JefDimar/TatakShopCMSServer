@@ -1,7 +1,8 @@
 const request = require('supertest')
 const app = require('../app')
-const { sequelize, User, Product } = require('../models')
+const { User, sequelize } = require('../models')
 const { generateToken } = require('../helpers/jwt')
+const { queryInterface } = sequelize
 
 let token = ''
 let id = 0
@@ -14,11 +15,13 @@ const dummyProduct = [
     name: 'Mouse seri besi',
     image_url: 'https://images-na.ssl-images-amazon.com/images/I/31j9d7a8PTL._AC_SY400_.jpg',
     price: 15000000,
-    stock: 4
+    stock: 4,
+    createdAt: new Date(),
+    updatedAt: new Date()
   }
 ]
 
-beforeAll(function (done) {
+beforeAll((done) => {
   User.findOne({
     where: { email: admin.email }
   })
@@ -33,9 +36,9 @@ beforeAll(function (done) {
       return user
     })
     .then(user => {
-      Product.create(dummyProduct)
+      queryInterface.bulkInsert('Products', dummyProduct, { returning: true })
         .then(data => {
-          id = data.id
+          id = data[0].id
           done()
         })
         .catch(err => {
@@ -43,15 +46,12 @@ beforeAll(function (done) {
         })
     })
     .catch(err => {
-      console.log(err);
       done(err)
     })
 })
 
 afterAll(function (done) {
-  Product.destroy({
-    where: { id }
-  })
+  queryInterface.bulkDelete('Products', null, {})
     .then(_ => {
       sequelize.close()
       done()
@@ -74,13 +74,11 @@ describe('success case for product', function () {
         }
         expect(res.status).toEqual(200)
         expect(typeof res.body).toEqual('object')
-        expect(res.body).toHaveProperty('id')
-        expect(res.body).toHaveProperty('name')
-        expect(res.body).toHaveProperty('image_url')
-        expect(res.body).toHaveProperty('price')
-        expect(res.body).toHaveProperty('stock')
-        expect(typeof res.body.access_token).toEqual('string')
-        expect(typeof res.body.message).toEqual('string')
+        expect(res.body[0]).toHaveProperty('id')
+        expect(res.body[0]).toHaveProperty('name')
+        expect(res.body[0]).toHaveProperty('image_url')
+        expect(res.body[0]).toHaveProperty('price')
+        expect(res.body[0]).toHaveProperty('stock')
         done()
       })
   })

@@ -7,6 +7,7 @@ function authorize(req, res, next) {
     where: { email }
   })
     .then(user => {
+      console.log(user, 'ini di habis then findone')
       if (!user) {
         next({
           name: 'Unauthorized, access denied'
@@ -15,6 +16,8 @@ function authorize(req, res, next) {
         next({
           name: 'Unauthorized, access denied'
         })
+      } else {
+        next()
       }
     })
     .catch(err => {
