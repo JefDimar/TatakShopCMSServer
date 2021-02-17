@@ -4,7 +4,7 @@
   "description": "Server REST API untuk webpage ecommerce",
   "main": "index.js",
   "scripts": {
-    "test": "npx jest",
+    "test": "npx jest --silent",
     "dev": "NODE_ENV=development nodemon bin/http.js",
     "start": "node bin/http.js",
     "db:create:dev": "NODE_ENV=development npx sequelize db:create",

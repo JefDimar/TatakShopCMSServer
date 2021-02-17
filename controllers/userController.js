@@ -28,7 +28,6 @@ class UserController {
               email: user.email,
               role: user.role
             }
-            console.log(payload, 'ini di login')
             const access_token = generateToken(payload)
 
             const output = {

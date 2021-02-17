@@ -21,7 +21,7 @@ const errorHandler = (err, req, res, next) => {
         })
         break;
       case 'JsonWebTokenError':
-        res.status(400).json({
+        res.status(401).json({
           message: 'Please provide a JWT token, or login again'
         })
         break;

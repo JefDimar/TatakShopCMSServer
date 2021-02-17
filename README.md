@@ -116,7 +116,8 @@ Server REST API untuk webpage ecommerce
     "name": "name of products you want to store",
     "image_url": "photos of your products you want to store",
     "price": "price of your products <must be greater than zero>",
-    "stock": "stock of your products <must be greater than zero>"
+    "stock": "stock of your products <must be greater than zero>",
+    "message": "Success to add product to database!"
   }
   ```
 
