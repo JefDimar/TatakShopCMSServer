@@ -3,7 +3,7 @@ const { Product } = require("../models");
 class ProductController {
   static getAll(req, res, next) {
     Product.findAll({
-      order: [["id", "DESC"]],
+      order: [["id", "ASC"]],
     })
       .then((data) => {
         const output = [];
@@ -15,8 +15,8 @@ class ProductController {
             price: element.price,
             stock: element.stock,
           });
-          res.status(200).json(output);
         });
+        res.status(200).json(output);
       })
       .catch((err) => {
         next(err);
