@@ -5,6 +5,7 @@ const authorize = require('../middlewares/authorization')
 const ProductController = require('../controllers/productController')
 
 // User Routing
+router.post('/register', UserController.register)
 router.post('/login', UserController.login)
 // Middleware auth
 router.use(authentication)
