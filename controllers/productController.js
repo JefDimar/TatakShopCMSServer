@@ -30,7 +30,7 @@ class ProductController {
       price: +req.body.price,
       stock: +req.body.stock,
     };
-    if (input.price < 0 || input.stock < 0) {
+    if (input.price < 1 || input.stock < 1) {
       next({
         name: "Error price / stock, min > 0",
       });
@@ -82,7 +82,7 @@ class ProductController {
       stock: req.body.stock,
     };
 
-    if (input.price < 0 || input.stock < 0) {
+    if (input.price < 1 || input.stock < 1) {
       next({
         name: "Error price / stock, min > 0",
       });
@@ -115,7 +115,7 @@ class ProductController {
       stock: req.body.stock,
     };
 
-    if (input.price < 0 || input.stock < 0) {
+    if (input.price < 1 || input.stock < 1) {
       next({
         name: "Error price / stock, min > 0",
       });
