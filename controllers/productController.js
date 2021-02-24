@@ -78,8 +78,8 @@ class ProductController {
     const input = {
       name: req.body.name,
       image_url: req.body.image_url,
-      price: req.body.price,
-      stock: req.body.stock,
+      price: +req.body.price,
+      stock: +req.body.stock,
     };
 
     if (input.price < 1 || input.stock < 1) {
@@ -111,8 +111,8 @@ class ProductController {
   static setPrice(req, res, next) {
     const id = req.params.id;
     const input = {
-      price: req.body.price,
-      stock: req.body.stock,
+      price: +req.body.price,
+      stock: +req.body.stock,
     };
 
     if (input.price < 1 || input.stock < 1) {

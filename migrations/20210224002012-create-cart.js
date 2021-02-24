@@ -14,7 +14,9 @@ module.exports = {
         references: {
           model: 'Products',
           key: 'id'
-        }
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
       },
       userId: {
         type: Sequelize.INTEGER,
@@ -22,7 +24,9 @@ module.exports = {
         references: {
           model: 'Users',
           key: 'id'
-        }
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
       },
       quantity: {
         type: Sequelize.INTEGER,

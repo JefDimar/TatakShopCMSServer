@@ -22,7 +22,7 @@ class UserController {
         } else {
           const match = checkPassword(input.password, user.password)
 
-          if (match) {
+          if (match && user.role === 'admin') {
             const payload = {
               id: user.id,
               email: user.email,
@@ -32,6 +32,20 @@ class UserController {
 
             const output = {
               message: 'Welcome back admin, have a nice day!',
+              access_token
+            }
+
+            res.status(200).json(output)
+          } else if (match && user.role === 'customer') {
+            const payload = {
+              id: user.id,
+              email: user.email,
+              role: user.role
+            }
+            const access_token = generateToken(payload)
+
+            const output = {
+              message: `Welcome back ${user.email}, have a nice day!`,
               access_token
             }
 
