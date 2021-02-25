@@ -32,7 +32,8 @@ class UserController {
 
             const output = {
               message: 'Welcome back admin, have a nice day!',
-              access_token
+              access_token,
+              user: user.email
             }
 
             res.status(200).json(output)
@@ -46,7 +47,8 @@ class UserController {
 
             const output = {
               message: `Welcome back ${user.email}, have a nice day!`,
-              access_token
+              access_token,
+              user: user.email
             }
 
             res.status(200).json(output)

@@ -18,9 +18,9 @@ router.get('/products/:id', authorize, ProductController.getByID)
 router.put('/products/:id', authorize, ProductController.edit)
 router.patch('/products/:id', authorize, ProductController.setPrice)
 router.delete('/products/:id', authorize, ProductController.delete)
-//Route for customer/client (cart)
-router.get('/carts', authorizeConsumer, CartController.getCart)
-router.post('/carts/:productId', authorizeConsumer, CartController.createCart)
+//Route for customer/client (cart) w/ authorize customer
+router.get('/carts', CartController.getCart)
+router.post('/carts/:productId', CartController.createCart)
 router.put('/carts/:cartId', authorizeConsumer, CartController.updateCart)
 router.delete('/carts/:cartId', authorizeConsumer, CartController.deleteCart)
 

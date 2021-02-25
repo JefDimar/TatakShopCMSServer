@@ -8,6 +8,7 @@ class CartController {
         userId: idUser,
         status: false
       },
+      order: [['id', 'DESC']],
       include: ['Product']
     })
       .then(data => {
