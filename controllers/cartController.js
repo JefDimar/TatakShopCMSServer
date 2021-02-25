@@ -65,10 +65,11 @@ class CartController {
       quantity: +req.body.quantity
     }
     Cart.update(input, {
-      where: { id }
+      where: { id },
+      returning: true
     })
       .then(data => {
-        res.status(200).json(data)
+        res.status(200).json(data[1])
       })
       .catch(err => {
         next(err)
